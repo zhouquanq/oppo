@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>OPPO注册页面</title>
+		<script src="__STATIC__/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__STATIC__/hdjs/hdjs.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/hdjs/hdjs.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css"/>
+		<script type="text/javascript">
+			$(function(){
+				var URL = "{|U:'Register/register'}";
+				var CODE = "{|U:'Register/vecode'}";
+				$('#regForm').validate({
+					username : {
+						rule : {
+							required : true,
+							minlen:5,
+							ajax:{url:URL}
+						},
+						error :{
+							required : '用户名不能为空',
+							minlen:'用户名不得少于5位',
+						},
+						success:'ok',
+						message:'请填写用户名'
+					},
+					password : {
+						rule : {
+							required : true,
+							minlen:6
+						},
+						error :{
+							required : '密码不能为空',
+							minlen:'密码不得少于6位'
+							
+						},
+						success:'ok',
+						message:'请填写密码'
+					},
+					password1: {
+						rule : {
+							required : true,
+							minlen:6,
+							confirm: 'password'
+						},
+						error :{
+							required : '确认密码不能为空',
+							minlen:'确认密码不得少于6位',
+							confirm :'两次密码不相同'
+						},
+						success:'ok',
+						message:'请填写确认密码'
+					},
+					code : {
+						rule : {
+							required : true,
+							ajax:{url:CODE}
+						},
+						error : {
+							required : '验证码不能为空'
+						},
+						success:'ok',
+						message:'请输入验证码'
+					}
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<!--注册界面头部开始-->
+		<div class="head">
+			<div class="head_top"></div>
+			<div class="head_bottom">
+				<a href="{|U:'Index/index'}"><img src="__PUBLIC__/images/logo.png"/></a>
+				<span></span>
+				<h3>注册OPPO帐号</h3>
+				<div class="head_bottom_right">
+					<a href="{|U:'Index/index'}">回到首页</a>
+					<a href="{|U:'Login/index'}">登录</a>
+				</div>
+				<a href="{|U:'Index/index'}"><img class="hui" src="__PUBLIC__/images/huishouye.png" alt="" /></a>
+				<a href="{|U:'Login/index'}"><img class="login" src="__PUBLIC__/images/login.png"/></a>
+			</div>
+		</div>
+		<!--注册界面头部结束-->
+		<!--注册界面中间开始-->
+		<div class="zhuce_box">
+			<div class="zhuce_box_cont">
+				<div class="zhuce_box_cont1">
+					<span class="zhanghao">如已有账号，请</span><a class="denglu" href="{|U:'Login/index'}">点此登录</a>
+					<form id="regForm" action="{|U:'Register/index'}" method="post" >
+						<input type="text" class="user" placeholder="邮箱/手机号" name="username" id="" value="" />
+						<input type="password" class="pass1" placeholder="密码（密码长度6~16位，数字，字母，字符至少包含两种）" name="password" id="" value="" />
+						<input type="password" class="pass2" placeholder="确认密码（密码长度6~16位，数字，字母，字符至少包含两种）" name="password1" id="" value="" />
+						<input type="text" class="code" placeholder="验证码" name="code" id="" value="" />
+						<img src="{|U:'code'}" alt="" onclick="javascript:this.src='{|U:'Admin/Login/code'}&mt='+Math.random()"/>
+						<!--<a class="xieyi" href=""><span class="xiyi"></span></a>-->
+						<!--<span class="ton">我已阅读并同意</span><a class="xiey" href="">《OPPO服务协议》</a>-->
+						<input class="tijiao" type="submit" value="注册"/>
+					</form>
+				</div>
+			</div>		
+		</div>
+		<!--注册界面中间结束-->
+		<include file="__VIEW__/Common/footer.html"/>
+	</body>
+</html>

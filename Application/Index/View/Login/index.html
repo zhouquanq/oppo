@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>OPPO用户登录</title>
+		<script src="__STATIC__/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__STATIC__/hdjs/hdjs.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/hdjs/hdjs.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css"/>
+	</head>
+	<body>
+		<!--登录界面头部开始-->
+		<div class="head">
+			<div class="head_top"></div>
+			<div class="head_bottom">
+				<a href="{|U:'Index/index'}"><img src="__PUBLIC__/images/logo.png"/></a>
+				<span></span>
+				<h3>登录OPPO帐号</h3>
+				<div class="head_bottom_right">
+					<a href="{|U:'Index/index'}">回到首页</a>
+					<a href="{|U:'Register/index'}">注册</a>
+				</div>
+				<a href="{|U:'Index/index'}"><img class="hui" src="__PUBLIC__/images/huishouye.png" alt="" /></a>
+				<a href="{|U:'Register/index'}"><img class="login" src="__PUBLIC__/images/login.png"/></a>
+			</div>
+		</div>
+		<!--登录界面头部结束-->
+		<!--登录界面中间开始-->
+		<div class="login_cont">
+			<div class="login_cont_box">
+				<div class="login_cont_left">
+					<img src="__PUBLIC__/images/login_logo.png" alt="" />
+				</div>
+				<div class="login_cont_right">
+					<form action="{|U:'Login/index'}" method="post" onsubmit="return hd_submit(this,'{|U:'Login/index'}','{|U:'Index/index'}')">
+						<input class="username" id="regForm" type="text" name="username" id="" placeholder="会员名/邮箱/手机号"/>
+						<span class="username">OPPO帐号（OPPO社区帐号、OPPO乐园帐号）均可登录</span>
+						<input class="password" type="password" name="password" id="" placeholder="密码"/>
+						<input class="code" type="text" name="code" id="" placeholder="验证码" />
+						<img id="code1" class="code1" onclick="javascript:this.src='{|U:'Admin/Login/code'}&mt='+Math.random()" src="{|U:'Login/code'}" alt="" />
+						<input class="sub" type="submit" value="登录"/>
+						<a class="wangji" href="">忘记密码?</a>
+						<a class="zhuce" href="{|U:'Register/index'}">注册新帐号</a><br />
+						<span>其他方式登录</span>
+						<a href=""><img class="qita" src="__PUBLIC__/images/qita1.png"/></a>
+					</form>
+				</div>	
+			</div>
+		</div>
+		<!--登录界面中间结束-->
+		<include file="__VIEW__/Common/footer.html"/>
+	</body>
+</html>

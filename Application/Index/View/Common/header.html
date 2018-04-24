@@ -1,0 +1,61 @@
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/animate.css"/>
+	<script src="__PUBLIC__/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="__PUBLIC__/js/js.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--顶部区域开始-->
+		<div class="top">
+			<div class="top_box">
+				<div class="top_box_left">
+				<ul>
+					<li><a href="{|U:'Index/index'}">首页</a></li><div></div>
+					<foreach from="$topdata" key="$k" value="$v">
+					<li><a href="{|U:'List/index',array('sid'=>$v['sid'])}">{$v.sname}</a></li><div></div>
+					</foreach>
+					
+				</ul>
+				</div>
+				<div class="top_box_right">
+					<ul>
+						<!--<a href=""><li>123</li></a><div></div>-->
+						<?php if(isset($_SESSION['uname'])){ ?>
+						<a href="{|U:'User/index'}"><li>我的OPPO</li></a>
+						<a href="{|U:'Index/out'}"><li>退出</li></a>
+						<?php }else{ ?>
+						<a href="{|U:'Login/index'}"><li>登录</li></a><div></div>
+						<a href="{|U:'Register/index'}"><li>注册</li></a>
+						<?php } ?>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--顶部区域结束-->
+		<!--logo-导航区域开始-->
+		<div class="logo-nav">
+			<div class="logo">
+				<a href="{|U:'Index/index'}"><img src="__PUBLIC__/images/logo.png"/></a>
+			</div>
+			<a href="{|U:'Cart/index'}">
+				<div class="cart">
+					<span>购物车</span>
+					<img class="cheche" src="__PUBLIC__/images/gouwuchee.png" alt="" />
+				</div>
+			</a>
+			
+			<div class="nav">
+				<ul>
+					<li><a href="{|U:'Index/index'}">首页</a></li>
+					<foreach from="$topdata" key="$k" value="$v">
+					<li><a href="{|U:'List/index',array('sid'=>$v['sid'])}">{$v.sname}</a></li>
+					</foreach>
+				</ul>
+			</div>	
+		</div>
+		<!--logo-导航区域结束-->
+		<div class="line-1"></div>
+		<div class="line-2"></div>
+		<div class="line-3"></div>	
+		<div class="line-4"></div>	
+		<div class="line-5"></div>
+		<div class="line-6"></div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/hdjs/hdjs.css"/>	
+</head>
+
+<body>
+	
+	<table class="hd-table hd-table-list">
+		<tr>
+			<td class="th" colspan="20">订单列表</td>
+		</tr>
+		<tr class="tableTop">
+			<td class="tdLittle1">订单ID</td>
+			<td>商品名</td>
+			<td>购买者</td>
+			<td>购买数量</td>
+			<td>购买价格</td>
+			<td>订单状态</td>
+			<td></td>
+		</tr>
+		<foreach from="$list" key="$k" value="$v">
+		<tr>
+			<td>{$v.lid}</td>
+			<td>{$v.gname}</td>
+			<td>{$v.names}</td>
+			<td>{$v.num}</td>
+			<td>{$v.price}</td>
+			<td><if value="$v['status']==0">未付款</if>
+				<if value="$v['status']==1">已付款</if>
+				<if value="$v['status']==2">已收货</if>
+				<if value="$v['status']==3">交易完成</if>&nbsp&nbsp
+				<if value="$v['status']==1"><a href="{|U:'Order/fahuo',array('lid'=>$v['lid'])}" class="hd-btn hd-btn-danger hd-btn-xm">请发货</a></if>
+			</td>
+		</tr>
+		</foreach>
+	
+	</table>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/hdjs/hdjs.css"/>	
+</head>
+
+<body>
+	
+	<table class="hd-table hd-table-list">
+		<tr>
+			<td class="th" colspan="20">商品列表</td>
+		</tr>
+		<tr class="tableTop">
+			<td class="tdLittle1">商品ID</td>
+			<td>商品名称</td>
+			<td>商品价格</td>
+			<td>库存</td>
+			<td>点击次数</td>
+			<td>上架时间</td>
+			<td>操作</td>
+		</tr>
+		<foreach from="$data" key="$k" value="$v">
+		<tr>
+			<td>{$v.gid}</td>
+			<td>{$v.gname}</td>
+			<td>{$v.price}</td>
+			<td>{$v.gnumber}</td>
+			<td>{$v.gclick}</td>
+			<td>{$v.addtime|date:'Y-m-d H:i:s',@@}</td>
+			<td>
+				<a href="{|U:'Admin/Goods/hindex',array('gid'=>$v['gid'],'tid'=>$v['type_tid'])}" class="hd-btn hd-btn-default hd-btn-xm">货品列表</a>
+				<a href="{|U:'Admin/Goods/edit',array('gid'=>$v['gid'])}" class="hd-btn hd-btn-primary hd-btn-xm">修改</a>
+				<a href="{|U:'Admin/Goods/del',array('gid'=>$v['gid'])}" class="hd-btn hd-btn-danger hd-btn-xm">删除</a>
+			</td>
+		</tr>
+		</foreach>
+	
+	</table>
+</body>
+</html>

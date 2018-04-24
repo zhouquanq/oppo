@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/hdjs/hdjs.css"/>	
+</head>
+
+<body>
+	<table class="hd-table hd-table-list">
+		<tr>
+			<td class="th" colspan="20">货品列表</td>
+		</tr>
+		<tr class="tableTop">
+			<td class="tdLittle1">货品ID</td>
+			<foreach from="$spec" key="$k" value="$v">
+			<td>{$v.attr_name}</td>
+			</foreach>
+			<td>库存</td>
+			<td>货号</td>
+			<td>操作</td>
+		</tr>
+		<foreach from="$listdata" key="$k" value="$v"
+		<tr>
+			<td>{$v.glid}</td>
+			<foreach from="$v['spec']" key="$kk" value="$vv">
+			<td>{$vv}</td>
+			</foreach>
+			<td>{$v.goods_sn}</td>
+			<td>{$v.gnumber}</td>
+			<td>
+				<a href="{|U:'Admin/Goods/dell',array('glid'=>$v['glid'])}" class="hd-btn hd-btn-danger hd-btn-xm">删除</a>
+			</td>
+		</tr>
+		</foreach>
+	</table>
+	<form action="{|U:'Admin/Goods/addl'}" method="post">
+		添加货品：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		
+		<foreach from="$spec" key="$k" value="$v">
+		{$v.attr_name}
+		<select name="combine[]">
+			<option value="0">-请选择-</option>
+			<foreach from="$v['option']" key="$kk" value="$vv">
+				<option value="{$vv.gtid}" tid="">{$vv.gtvalue}</option>
+			</foreach>
+		</select>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		</foreach>
+		
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp库存
+		<input type="text" name="goods_sn" id="" value="" />
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp货号
+		<input type="text" name="gnumber" id="" value="" /><br />
+		
+		<input type="hidden" name="goods_gid" id="goods_gid" value="{$hd.get.gid}" />
+		<input type="submit" class="hd-btn hd-btn-primary" value="添加货品"/>
+	</form>
+</body>
+</html>

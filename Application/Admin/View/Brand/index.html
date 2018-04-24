@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/hdjs/hdjs.css"/>	
+</head>
+
+<body>
+	
+	<table class="hd-table hd-table-list">
+		<tr>
+			<td class="th" colspan="20">品牌列表</td>
+		</tr>
+		<tr class="tableTop">
+			<td class="tdLittle1">品牌ID</td>
+			<td>品牌名称</td>
+			<td>LOGO</td>
+			<td>是否热门</td>
+			<td>操作</td>
+		</tr>
+		<foreach from="$data" key="$k" value="$v">
+		<tr>
+			<td>{$v.bid}</td>
+			<td>{$v.bname}</td>
+			<td><img src="__ROOT__/{$v.logo}" alt="" /></td>
+			<td><if value="$v['is_hot']==1">是<else/>否</if></td>
+			<td>
+				<a href="{|U:'Admin/Brand/out',array('bid'=>$v['bid'])}" class="hd-btn hd-btn-danger hd-btn-xm">删除</a>
+			</td>
+		</tr>
+		</foreach>
+	
+	</table>
+</body>
+</html>

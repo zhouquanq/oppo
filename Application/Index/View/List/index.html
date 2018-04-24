@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>OPPO商品列表</title>
+		<include file="__VIEW__/Common/header.html"/>
+		<!--子导航开始-->
+		<div class="subnav">
+			<a href="{|U:'Index/index'}">首页</a>&nbsp<i>/</i>&nbsp
+			<span>商品列表</span>
+		</div>
+		<!--子导航结束-->
+		<!--分类开始部份-->
+		<div class="sort">
+			<!--<div class="sort_top">
+				<div class="sort_top_sort">
+					<a href=""><img src="__PUBLIC__/images/list.1.jpg"/></a>
+					<p style="display: block;"></p>
+				</div>
+				<div class="sort_top_sort">
+					<a href=""><img src="__PUBLIC__/images/list.2.jpg"/></a>
+					<p></p>
+				</div>
+				<div class="sort_top_sort">
+					<a href=""><img src="__PUBLIC__/images/list.3.jpg"/></a>
+					<p></p>
+				</div>
+				<div class="sort_top_sort">
+					<a href=""><img src="__PUBLIC__/images/list.4.jpg"/></a>
+					<p></p>
+				</div>
+				<div class="sort_top_sort">
+					<a href=""><img src="__PUBLIC__/images/list.5.jpg"/></a>
+					<p></p>
+				</div>
+				<div class="sort_top_sort">
+					<img src="__PUBLIC__/images/list.6.jpg"/>
+				</div>
+			</div>-->
+			<div class="sort_bottom">
+				<ul>
+					<foreach from="$tempFinalAttr" value="$v" key="$k">
+					<li class="attr-border">
+						<span>{$v.name}：</span>
+						<ul class="attr-content">
+							<?php 
+								$temp = $param;
+								$temp[$k] = 0;
+							 ?>
+							<li>
+								<a href="{|U:'List/index',array('sid'=>$_GET['sid'],'param'=>implode('_',$temp))}" <if value="$param[$k] eq 0">class="hover"</if>>全部</a>
+							</li>
+							<foreach from="$v['value']" key="$kk" value="$vv">
+								<?php 
+									$temp[$k] = $vv['gtid'];
+								 ?>
+							<li>
+								<a href="{|U:'List/index',array('sid'=>$_GET['sid'],'param'=>implode('_',$temp))}" <if value="$param[$k] eq $vv['gtid']">class="hover"</if>>{$vv.gtvalue}</a>
+							</li>
+							</foreach>
+						</ul>
+					</li>
+					</foreach>
+				</ul>
+			</div>
+		</div>
+		<!--分类部份结束-->
+		<!--商品列表开始-->
+		<div class="list_content">
+			<div class="list_content_top">
+				<!--<div class="list_title">
+					<a style="color: #2AAD6F;" href="">默认</a>
+					<a href="">价格</a>
+					<a href="">最新</a>
+				</div>-->
+				<if value="!$goods">
+				<div class="list_no">
+					<if value="$_GET['sid']==19">
+					<h2>当前没有商品符合筛选条件，请查看<a href="{|U:'List/index',array('sid'=>19)}">全部手机</a>。</h2>
+					</if>
+					<if value="$_GET['sid']==22">
+					<h2>当前没有商品符合筛选条件，请查看<a href="{|U:'List/index',array('sid'=>22)}">全部配件</a>。</h2>
+					</if>
+				</div>
+				<else/>
+				<div class="list_box">
+					<foreach from="$goods" key="$k" value="$v">
+					<div class="list_con">
+						<a href="{|U:'Products/index',array('gid'=>$v['gid'])}"><img class="" src="__ROOT__/{$v.lest_img}"/></a>
+						<div class="note">
+							<a href="">{$v.gname}</a><br />
+							<span class="price">￥{$v.price}.00</span>
+						</div>
+					</div>
+					</foreach>
+				</div>
+				</if>
+			</div>
+			
+			
+			<!--分页开始-->
+			<div class="page">
+				{$page}
+			</div>
+			<!--分页结束-->
+			<!--最近浏览开始-->
+			<?php if(isset($history)) {?>
+			<div class="recent">
+				<h2>您最近浏览过的产品</h2>
+				<div class="rectent_box">
+					<foreach from="$history" key="$k" value="$v">
+					<div class="rectent_box_con">
+						<a href="{|U:'Products/index',array('gid'=>$v['gid'])}"><img src="__ROOT__/{$v.lest_img}" alt="" /></a>
+						<div class="rectent_box_content">
+							<a href="">{$v.gname}</a>
+							<span>￥{$v.price}.00</span>
+						</div>
+					</div>
+					</foreach>
+				</div>
+			</div>
+			<?php } ?>
+			<!--最近浏览结束-->
+		</div>
+		<!--商品列表结束-->
+		<!--底部1开始-->
+		<div class="bottom1">
+			<div>
+				<img src="__PUBLIC__/images/bottom1.jpg"/>
+				<img src="__PUBLIC__/images/bottom2.jpg"/>
+			</div>
+		</div>
+		<!--底部1结束-->
+		<include file="__VIEW__/Common/footer.html"/>
+	</body>
+</html>

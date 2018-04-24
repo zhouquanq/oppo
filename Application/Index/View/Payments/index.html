@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>OPPO支付页面</title>
+		<include file="__VIEW__/Common/header.html"/>
+		<!--cart中间部份开始-->
+		<div class="cart_box">
+			<div class="cart1">
+				<a href="{|U:'Index/index'}">首页</a>&nbsp<i>/</i>&nbsp
+				<span>我的OPPO</span>
+			</div>
+			<ul class="cart1_ul">
+				<li style="background: #fff; border-bottom: 4px solid #F5A146;">购物车</li>
+				<li style="background: #fff; border-bottom: 4px solid #F5A146;">填写订单</li>
+				<li style="background: #fff; border-bottom: 4px solid #F5A146;">支付</li>
+			</ul>
+			<div class="zhifu_box">
+				<div class="zhifu">
+					<span>订单提交成功！请您尽快付款。 订单将保留48小时，逾时将被取消。</span>
+				</div>
+				<div class="trade_right">
+				<ul>
+					<li>总价:<span>￥{$tradedata.totalPrice}</span></li>
+				</ul>
+				
+				<ul>
+					<li>邮费:<span>+￥0.00</span></li>
+					<li>手续费:<span>+￥0.00</span></li>
+					<li>优惠:<span>-￥0.00</span></li>
+				</ul>
+				<div class="zongji">
+					<h4 class="xiaojil">小计：</h4>
+					<h4 class="xiaojir"> ￥{$tradedata.totalPrice}</h4>
+					<a href="{|U:'Payments/zhifu',array('lid'=>$tradedata['lid'])}">支付</a>
+				</div>
+			</div>
+			</div>
+		</div>
+		
+		<include file="__VIEW__/Common/footer.html"/>
+	</body>
+</html>

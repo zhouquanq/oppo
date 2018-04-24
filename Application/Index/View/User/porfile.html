@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>个人中心-账户信息</title>
+		<include file="__VIEW__/Common/header.html"/>
+		<script type="text/javascript">
+			$(function(){
+				$('.edit').click(function(){
+					$('.user_box').show();
+					$('.alter').hide();
+				})
+			})
+		</script>
+		<!--子导航开始-->
+		<div class="subnav">
+			<a href="{|U:'Index/index'}">首页</a>&nbsp<i>/</i>&nbsp
+			<span>我的OPPO</span>
+		</div>
+		<!--子导航结束-->
+		<!--个人中心内容开始-->
+		<div class="user_cont">
+			<div class="user_cont1">
+				<h2>账户信息</h2>
+				<ul>
+					<li><a href="{|U:'Index/User/index'}">个人首页</a></li>
+					<li><a href="{|U:'Index/User/porfile'}" style="color: #393939;border-bottom: 2px solid #2AAD6F;">账户信息</a></li>
+					<li><a href="{|U:'Index/User/orders'}">我的订单</a></li>
+					<li><a href="{|U:'Index/User/addresses'}">配送地址</a></li>
+				</ul>
+			</div>
+			<!--<div class="eml">
+				<div class="eml_con">
+					<h5>绑定您的邮箱，即使接受 OPPO活动咨询</h5>
+					<span class="youxiang">联系邮箱:</span><br />
+					<input type="text" class="emal" name="" id="" value="" /><a href="">验证邮箱</a>
+				</div>
+			</div>-->
+			<div class="geren">
+				<span class="user">*用户名：{$user.username}</span>
+				<span class="sex">性别：{$user.sex}</span><br />
+				<span class="birthday">生日：{$user.birthday}</span>
+			</div>
+			<form action="{|U:'User/edituser'}" method="post" name=form1>
+			<div class="user_box">
+				<span>用户名：</span>
+				<input class="u" type="text" name="username" id="" value="{$user.username}" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<span>性别：</span>
+				<select name="sex">
+					<option value="">-请选择-</option>
+					<option value="男">男</option>
+					<option value="男">女</option>
+				</select><br />	
+				<span>生日</span>
+				<select name=YYYY onchange="YYYYMM(this.value)">
+				<option value="">年</option>
+				</select>
+				<select name=MM onchange="MMDD(this.value)">
+				<option value="">月</option>
+				</select>
+				<select name=DD>
+				<option value="">日</option>
+				</select>
+				<br />
+				<input type="hidden" name="uid" id="" value="{$user.uid}" />
+				<input type="submit" class="gai" value="修改"/>
+			</div>
+			</form>
+			<div class="alter">
+				<a class="edit" href="javascript:;">修改</a>
+			</div>
+			<div  class="porfile_right">
+				<form action="{|U:'Index/User/porfile'}" method="post">
+					<span>当前密码</span><br />
+					<input class='psd' type="password" name="pasd" id="" value="zhouquan" />
+					<input class="gai" type="submit" value="修改"/>
+				</form>
+			</div>
+		</div>
+		<!--个人中心内容结束-->
+		<include file="__VIEW__/Common/footer.html"/>
+		<script language="JavaScript">
+window.onload = function(){
+strYYYY = document.form1.YYYY.outerHTML;
+strMM = document.form1.MM.outerHTML;
+strDD = document.form1.DD.outerHTML;
+MonHead = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+//先给年下拉框赋内容
+var y = new Date().getFullYear();
+var str = strYYYY.substring(0, strYYYY.length - 9);
+for (var i = (y-30); i < (y+30); i++) //以今年为准，前30年，后30年
+{
+str += "<option value='" + i + "'> " + i + "</option>\r\n";
+}
+document.form1.YYYY.outerHTML = str +"</select>";
+
+//赋月份的下拉框
+var str = strMM.substring(0, strMM.length - 9);
+for (var i = 1; i < 13; i++)
+{
+str += "<option value='" + i + "'> " + i + "</option>\r\n";
+}
+document.form1.MM.outerHTML = str +"</select>";
+
+document.form1.YYYY.value = y;
+document.form1.MM.value = new Date().getMonth() + 1;
+var n = MonHead[new Date().getMonth()];
+if (new Date().getMonth() ==1 && IsPinYear(YYYYvalue)) n++;
+writeDay(n); //赋日期下拉框
+document.form1.DD.value = new Date().getDate();
+}
+function YYYYMM(str) //年发生变化时日期发生变化(主要是判断闰平年)
+{
+var MMvalue = document.form1.MM.options[document.form1.MM.selectedIndex].value;
+if (MMvalue == ""){DD.outerHTML = strDD; return;}
+var n = MonHead[MMvalue - 1];
+if (MMvalue ==2 && IsPinYear(str)) n++;
+writeDay(n)
+}
+function MMDD(str) //月发生变化时日期联动
+{
+var YYYYvalue = document.form1.YYYY.options[document.form1.YYYY.selectedIndex].value;
+if (str == ""){DD.outerHTML = strDD; return;}
+var n = MonHead[str - 1];
+if (str ==2 && IsPinYear(YYYYvalue)) n++;
+writeDay(n)
+}
+function writeDay(n) //据条件写日期的下拉框
+{
+var s = strDD.substring(0, strDD.length - 9);
+for (var i=1; i<(n+1); i++)
+s += "<option value='" + i + "'> " + i + "</option>\r\n";
+document.form1.DD.outerHTML = s +"</select>";
+}
+function IsPinYear(year)//判断是否闰平年
+{ return(0 == year%4 && (year%100 !=0 || year%400 == 0))}
+//--></script>
+	</body>
+</html>

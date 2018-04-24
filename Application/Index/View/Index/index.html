@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>OPPO商城首页</title>
+		<include file="__VIEW__/Common/header.html"/>
+		<!--子导航开始-->
+		<div class="subnav">
+			<a href="{|U:'Index/index'}">首页</a>&nbsp<i>/</i>&nbsp
+			<span>在线购买</span>
+		</div>
+		<!--子导航结束-->
+		<!--轮播区域开始-->
+		<div class="carousel">
+			<a class="left" href="javascript:;">〈</a>
+			<a class="right" href="javascript:;">〉</a>
+			<div class="lunbo">
+				<a href="{|U:'Products/index',array('gid'=>160)}"><img src="__PUBLIC__/images/lunbo1.jpg"/></a>
+				<a href="{|U:'Products/index',array('gid'=>139)}"><img src="__PUBLIC__/images/lunbo2.jpg"/></a>
+				<a href="{|U:'Products/index',array('gid'=>136)}"><img src="__PUBLIC__/images/lunbo3.jpg"/></a>
+				<a href="{|U:'Products/index',array('gid'=>129)}"><img src="__PUBLIC__/images/lunbo4.jpg"/></a>
+				<a href="{|U:'Products/index',array('gid'=>160)}"><img src="__PUBLIC__/images/lunbo1.jpg"/></a>
+			</div>
+			<ul>
+				<li style="background: #fff;border:2px solid #2AAD6F"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<!--轮播区域结束-->
+		<!--内容上-->
+		<div class="content_top">
+			<div class="top_">
+				<img src="__PUBLIC__/images/zhengping.png" alt="" />
+				<div class="top_content">
+					<strong>正品保障</strong><br />
+					<span>所有产品都是原装正品</span>
+				</div>
+			</div>
+			<div class="top_">
+				<img src="__PUBLIC__/images/baoyou.png" alt="" />
+				<div class="top_content">
+					<strong>79元起包邮</strong><br />
+					<span>高效的物流直达配送</span>
+				</div>
+			</div>
+			<div class="top_">
+				<img src="__PUBLIC__/images/tuihuo.png" alt="" />
+				<div class="top_content">
+					<strong>7天退换货</strong><br />
+					<span>支持7天退货，30天换货</span>
+				</div>
+			</div>
+			<div class="top_">
+				<img src="__PUBLIC__/images/tiyan.png" alt="" />
+				<div class="top_content">
+					<strong>2800家体验店</strong><br />
+					<span>轻松自在，覆盖各大城市</span>
+				</div>
+			</div>
+		</div>
+		<!--内容中1-->
+		<div class="content1">
+			<div class="content_con">
+				<div class="content_con_big">
+					<div class="content_box1">
+						<img src="__PUBLIC__/images/content1.1.jpg"/>
+						<a class="c1.2" href="{|U:'List/index',array('sid'=>19)}">更多爆款手机</a>
+						<p><a class="c1.3" href="{|U:'List/index',array('sid'=>19)}">立即查看</a></p>
+					</div>
+					<div class="content_box2">
+						<img src="__PUBLIC__/images/content1.2.jpg"/>
+						<a class="c2" href="{|U:'Products/index',array('gid'=>131)}">N3 电动旋转摄像头</a>
+						<p><a href="{|U:'Products/index',array('gid'=>131)}">立即查看</a></p>
+					</div>
+				</div>
+				<div class="content_con_big">
+					<div class="content_box3">
+						<a class="c3" href="{|U:'Products/index',array('gid'=>129)}">R7 全金属闪拍手机</a>
+						<span>￥2499.00</span>
+					</div>
+					<div class="content_box4">
+						<a href="{|U:'Products/index',array('gid'=>129)}"><img src="__PUBLIC__/images/content1.3.jpg" alt="" /></a>
+					</div>
+				</div>
+				<div class="content_con_big">
+					<foreach from="$phones1" key="$k" value="$v">
+					<div class="content_box5">
+						<img src="__ROOT__/{$v.lest_img}" alt="" /><br />
+						<a href="{|U:'Products/index',array('gid'=>$v['gid'])}">{$v.gname}</a>
+						<!--<s>￥2999.00</s>-->
+						<strong>￥{$v.price}.00</strong>
+					</div>
+					</foreach>
+				</div>
+				<div class="content_con_big">
+					<foreach from="$phones2" key="$k" value="$v">
+					<div class="content_box7">
+						<img src="__ROOT__/{$v.lest_img}" alt="" /><br />
+						<a href="{|U:'Products/index',array('gid'=>$v['gid'])}">{$v.gname} </a>
+						<strong>￥{$v.price}.00</strong>
+					</div>
+					</foreach>
+				</div>
+			</div>
+		</div>
+		<!--内容1结束-->
+		<!--内容中2-->
+		<div class="content2">
+			<div class="content_con">
+				<div class="content_con_big">
+					<div class="content_box1">
+						<img src="__PUBLIC__/images/content2.1.jpg"/>
+						<a class="c1.2" href="">更多爆款配件</a>
+						<p><a class="c1.3" href="">立即查看</a></p>
+					</div>
+					<div class="content_box2">
+						<img src="__PUBLIC__/images/content2.2.jpg"/>
+						<a class="c2" href="{|U:'Products/index',array('gid'=>150)}">iLIKE 蓝牙耳机 LE903</a>
+						<p><a href="{|U:'Products/index',array('gid'=>150)}">立即查看</a></p>
+					</div>
+				</div>
+				<div class="content_con_big">
+					<div class="content_box3">
+						<a class="c3" href="{|U:'Products/index',array('gid'=>156)}">O-Band智能手环 健康监测 智能提醒</a>
+						<span>￥2499.00</span>
+					</div>
+					<div class="content_box4">
+						<img src="__PUBLIC__/images/content2.3.jpg" alt="" />
+					</div>
+				</div>
+				<div class="content_con_big">
+					<foreach from="$parts1" key="$k" value="$v">
+					<div class="content_box5">
+						<img src="__ROOT__/{$v.lest_img}" alt="" /><br />
+						<a href="{|U:'Products/index',array('gid'=>$v['gid'])}">{$v.gname}</a>
+						<!--<s>￥2999.00</s>-->
+						<strong>￥{$v.price}.00</strong>
+					</div>
+					</foreach>
+				</div>
+				<div class="content_con_big">
+					<foreach from="$parts2" key="$k" value="$v">
+					<div class="content_box7">
+						<img src="__ROOT__/{$v.lest_img}" alt="" /><br />
+						<a href="{|U:'Products/index',array('gid'=>$v['gid'])}">{$v.gname}</a>
+						<strong>￥{$v.price}.00</strong>
+					</div>
+					</foreach>
+				</div>
+			</div>
+		</div>
+		<!--内容2结束-->
+		<!--内容3开始-->
+		<div class="content3">
+			<div class="left1">
+				<div class="con_top">
+					<h2>更多手机</h2>
+					<!--<span>浏览:</span>
+					<ul>
+						<li><a href="">￥1000-￥1999</a></li>
+						<li><a href="">￥2000-￥2999</a></li>
+						<li><a href="">￥3000以上</a></li>
+					</ul>-->
+				</div>
+				<div class="con_bottom">
+					<foreach from="$phone" key="$k" value="$v">
+					<div class="con_bottom_left">
+						<a href="{|U:'Products/index',array('gid'=>$v['gid'])}"><img src="__ROOT__/{$v.lest_img}" alt="" /></a>
+						<div class="neirong">
+							<a href="{|U:'Products/index',array('gid'=>$v['gid'])}">{$v.gname}</a><br />
+							<!--<s></s><br />-->
+							<span>￥{$v.price}.00</span>
+						</div>
+					</div>
+					</foreach>
+				</div>
+			</div>
+			<div class="right1">
+				<div class="con_top">
+					<h2>更多配件</h2>
+					<!--<span>浏览:</span>
+					<ul>
+						<li><a href="">移动电源</a></li>						
+						<li><a href="">耳机</a></li>
+						<li><a href="">电池</a></li>
+						<li><a href="">保护套</a></li>
+					</ul>-->
+				</div>
+				<div class="con_bottom">
+					<foreach from="$parts" key="$k" value="$v">
+					<div class="con_bottom_left">
+						<a href="{|U:'Products/index',array('gid'=>$v['gid'])}"><img src="__ROOT__/{$v.lest_img}" alt="" /></a>
+						<div class="neirong">
+							<a href="{|U:'Products/index',array('gid'=>$v['gid'])}">{$v.gname}</a><br />
+							<!--<s></s><br />-->
+							<span>￥{$v.price}.00</span>
+						</div>
+					</div>
+					</foreach>
+				</div>
+			</div>
+			<div class="shouji">
+				<a href="{|U:'List/index',array('sid'=>19)}">浏览所有手机</a>
+			</div>
+			<div class="peijian">
+				<a href="{|U:'List/index',array('sid'=>22)}">浏览所有配件</a>
+			</div>
+		</div>
+		<!--内容3结束-->
+		<!--底部1开始-->
+		<div class="bottom1">
+			<div>
+				<img src="__PUBLIC__/images/bottom1.jpg"/>
+				<img src="__PUBLIC__/images/bottom2.jpg"/>
+			</div>
+		</div>
+		<!--底部1结束-->
+		<include file="__VIEW__/Common/footer.html"/>
+	</body>
+</html>

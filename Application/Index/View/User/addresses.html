@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>个人中心-配送地址</title>
+		<include file="__VIEW__/Common/header.html"/>
+		<script language="javascript" src="__STATIC__/address.js"></script>
+		<script src="__STATIC__/hdjs/hdjs.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/hdjs/hdjs.css"/>
+		<script type="text/javascript">
+			 	var s=["s1","s2","s3"];
+				var opt0 = ["请选择省","请选择市","请选择县（区）"];
+				function setup(){
+				 for(i=0;i<s.length-1;i++)
+				  document.getElementById(s[i]).onclick=new Function("change("+(i+1)+")");
+				 change(0);
+				}
+				window.onload=function(){
+				setup()	
+					
+				};
+				$(function(){
+					
+					$('.dj').live('click',function(){
+						var dj = $('#s1').val() + '省,' + $('#s2').val() + '市,' + $('#s3').val();
+						alert(dj);	
+					})
+				})
+				
+				$(function(){
+					$('#add').validate({
+						names : {
+							rule : {
+								required : true,
+								minlen:2
+							},
+							error :{
+								required : '收货人姓名必须填写',
+								minlen:'用户名不得少于2位'
+							},
+							success:'ok',
+							message:'请填写收货人姓名'
+						},
+						phone : {
+							rule : {
+								required : true,
+								minlen:2,
+								phone:true
+							},
+							error :{
+								required : '收货人手机必须填写',
+								minlen:'用户名不得少于2位',
+								phone:'手机格式不正确'
+							},
+							success:'ok',
+							message:'请填写收货人手机'
+						},
+						xiangxi : {
+							rule : {
+								required : true,
+								minlen:3
+							},
+							error :{
+								required : '详细地址必须填写',
+								minlen:'用户名不得少于3位'
+							},
+							success:'ok',
+							message:'请填写详细地址街道'
+						},
+					})
+				})
+				//点击显示添加地址
+				$(function(){
+					$('.xindizhi').click(function(){
+						$('.dizhi').show();
+					})
+				})
+				//点击触发提交订单的单击事件
+				$(function(){
+					$('.sub').click(function(){
+						$('.dingdan').click();
+					})
+				})
+		</script>
+		<!--子导航开始-->
+		<div class="subnav">
+			<a href="{|U:'Index/index'}">首页</a>&nbsp<i>/</i>&nbsp
+			<span>我的OPPO</span>
+		</div>
+		<!--子导航结束-->
+		<!--配送地址内容开始-->
+		<div class="user_cont">
+			<div class="user_cont1">
+				<h2>配送地址</h2>
+				<ul>
+					<li><a href="{|U:'Index/User/index'}">个人首页</a></li>
+					<li><a href="{|U:'Index/User/porfile'}">账户信息</a></li>
+					<li><a href="{|U:'Index/User/orders'}">我的订单</a></li>
+					<li><a href="{|U:'Index/User/addresses'}" style="color: #393939;border-bottom: 2px solid #2AAD6F;">配送地址</a></li>
+				</ul>
+			</div>
+			<div class="addresses">
+				<h4>我们默认首选顺丰快递，如收货地址顺丰快递不能送达，我们会更改为EMS快递为您配送。</h4>
+				<!--没有地址的情况-->
+				<!--<a class="xindizhi" href="">添加新地址</a>-->
+				<!--有地址的情况-->
+				<foreach from="$adress" key="$k" value="$v">
+				<div class="adress">
+					<input type="radio" name="id" id="" value="{$v.id}" />
+					<div class="adress_con">
+						<h4>{$v.adress}</h4>
+						<span>{$v.names}</span><br />
+						<span>{$v.phone}</span><br />
+						<!--<span>222</span>-->
+					</div>
+					<a class="del" href="{|U:'User/del',array('id'=>$v['id'])}">X</a>
+				</div>
+				</foreach>
+				<a class="xindizhi" href="javascript:;">添加新地址</a>
+				<!--有地址的情况-->
+					<div class="dizhi">
+						<form id="add" action="{|U:'User/add'}" method="post">
+							<span>*收货人姓名</span><br />
+							<input name="names" type="text" id="" placeholder="请填写收货人姓名" /><br />
+							<span>*手机号码</span><br />
+							<input name="phone" type="text" id="" placeholder="请填写手机号" /><br />
+							<span>*收货人地址</span><br />
+							<select id="s1" name="province">
+								<option>省份</option>
+							</select>
+							<select id="s2" name="city">
+								<option>地级市</option>
+							</select>
+							<select id="s3" name="county">
+								<option>市、县级市、县</option>
+							</select><br />
+							<input type="text" name="xiangxi" class="xiangxi" id="" placeholder="请填写详细街道" style="margin-top: 8px;"/><br />
+							<span>电子邮箱</span><br />
+							<input type="text" name="email" id="" placeholder="请填写邮箱" /><br />
+							<input class="tijiao" name="tijiao" type="submit" value="添加地址"/ style="margin-top: 10px;">
+						</form>
+					</div>
+			</div>
+		</div>	
+		<!--配送地址内容结束-->
+		<include file="__VIEW__/Common/footer.html"/>
+	</body>
+</html>

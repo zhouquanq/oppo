@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>个人中心-我的订单</title>
+		<include file="__VIEW__/Common/header.html"/>
+		<!--子导航开始-->
+		<div class="subnav">
+			<a href="{|U:'Index/index'}">首页</a>&nbsp<i>/</i>&nbsp
+			<span>我的OPPO</span>
+		</div>
+		<!--子导航结束-->
+		<!--配送地址内容开始-->
+		<div class="user_cont">
+			<div class="user_cont1">
+				<h2>我的订单</h2>
+				<ul>
+					<li><a href="{|U:'Index/User/index'}">个人首页</a></li>
+					<li><a href="{|U:'Index/User/porfile'}">账户信息</a></li>
+					<li><a href="{|U:'Index/User/orders'}" style="color: #393939;border-bottom: 2px solid #2AAD6F;">我的订单</a></li>
+					<li><a href="{|U:'Index/User/addresses'}">配送地址</a></li>
+				</ul>
+			</div>	
+			<div class="order">
+				<!--<a class="lishi" href="">查看历史订单</a>-->
+				<?php if(!$order){ ?>
+				<!--没有订单的情况-->
+				<div class="meiyou">
+					<span class="zhanwu">暂无订单</span>
+				</div>
+				<!--有订单的情况-->
+				<?php }else{ ?>
+				<foreach from="$order" key="$k" value="$v">
+				<div class="order_top">
+					<span class="dingdan">订单编号：<a class="hao" href="">150618123191385</a></span>
+					<span class="shi">下单时间：{$v.add_time|date:'Y-m-d',@@}</span>
+				</div>
+				<ul>
+					<li class="shangp">商品</li>
+					<li class="shul">数量</li>
+					<li class="dingd">订单金额</li>
+					<li class="shouh">收货信息</li>
+					<li class="zhuangt">状态操作</li>
+				</ul>
+				<div class="xinx">
+					<div class="shang">
+						<img src="__ROOT__/{$v.lest_img}"/><br />
+						<span>{$v.gname}</span>
+					</div>
+					<div class="shu">
+						<span>{$v.num}</span>
+					</div>
+					<div class="ding">
+						<span>¥{$v.price}.00 </span>
+					</div>
+					<div class="shou">
+						<span>{$v.names}</span><br />
+						<span>{$v.phone}</span><br />
+						<!--<span>306757130@qq.com</span><br />-->
+						<span>{$v.adress}</span>
+					</div>
+					<div class="zhuang">
+						<span>订单状态：<if value="$v['status']==0">未付款</if><if value="$v['status']==1">已付款</if><if value="$v['status']==2">已发货</if><if value="$v['status']==3">已收货</if><if value="$v['status']==4">交易完成</if></span>
+						<if value="$v['status']==1"><a href="javascript:;">等待发货</a></if>
+						<if value="$v['status']==2"><a href="{|U:'User/queren',array('lid'=>$v['lid'])}">确认收货</a></if>
+						<if value="$v['status']==3"><a href="javascript:;">交易完成</a></if>
+					</div>
+				</div>
+				</foreach>
+				<?php } ?>
+			</div>
+		</div>
+		<!--配送地址内容结束-->
+		<include file="__VIEW__/Common/footer.html"/>
+	</body>
+</html>

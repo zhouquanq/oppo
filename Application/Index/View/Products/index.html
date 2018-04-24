@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>OPPO商品页</title>
+		<include file="__VIEW__/Common/header"/>
+		<script type="text/javascript">
+			$(function(){
+				//规格选择
+				$('.fenlei1_1 a').first().addClass('zhong');
+				$('.fenlei1_1 a').click(function(){
+					$(this).parents('div.fenlei1').find('a').removeClass('zhong');
+					$(this).addClass('zhong');
+					if($('.zhong').length>=1){
+						var id = '';
+						$.each($('.zhong'), function() {    
+							id += $(this).attr('specId') + ',';
+							
+						});
+						//alert(id);
+						$.ajax({
+							type:"post",
+							url:"{|U:'Index/Products/_type'}",
+							data:{id : id},
+							dataType:'json',
+							success:function(phpData){
+								var attr = '';
+								$.each(phpData,function(k,v) {
+									attr += '<input type="hidden" name="attr[]" value='+ v.gtvalue +' />'
+								});
+								$('#aja').html(attr);
+							}
+						});
+					} 
+				})
+			})
+		</script>
+		<!--子导航开始-->
+		<div class="subnav">
+			<a href="{|U:'Index/index'}">首页</a>&nbsp<i>|</i>&nbsp
+			<span>商品列表</span>&nbsp<i>|</i>&nbsp
+			<span>{$good.gname}</span>
+		</div>
+		<!--子导航结束-->
+		<div class="shangpin">
+			<div class="shangpin_box animated bounceInDown">
+				<div class="img">
+					<div class="imgbox">
+						<foreach from="$big" key="$k" value="$v">
+						<img src="__ROOT__/{$v}"/>
+						</foreach>
+					</div>
+				</div>
+				<ul>
+					<foreach from="$small" key="$k" value="$v">
+					<a href="javascript:;"><li><img src="__ROOT__/{$v}" alt="" /></li></a>
+					</foreach>
+				</ul>
+				<div class="xiangq">
+					<h2>{$good.gname}</h2>
+					<span>{$good.good_detail}</span>
+					<span class="jia">￥{$good.price}.00</span>
+				</div>
+				<div class="fenlei">
+					<foreach from="$spec" key="$k" value="$v">
+					<div class="fenlei1">
+						<span>{$v.attr_name}</span>
+						<div class="fenlei1_1">
+							<foreach from="$v['option']" key="$kk" value="$vv">
+							<a href="javascript:;" specId="{$vv.gtid}">{$vv.gtvalue}</a>
+							</foreach>
+						</div>
+					</div>
+					</foreach>
+					<!--<div class="fenlei4">
+						<span>赠品</span>
+						<div class="fenlei4_1">
+							<img src="__PUBLIC__/images/mai1.jpg" alt="" />
+							<a class="zeng1" href="">iLIKE 5200mAh O萌移 动电源 BY503 红</a><br />
+							<img src="__PUBLIC__/images/mai2.jpg" alt="" />
+							<a class="zeng2" href="">QCY 大咖蓝牙耳机 J134 黄黑</a>
+						</div>
+					</div>
+					<div class="fenlei5">
+						<span>服务</span>
+						<div class="fenlei5_1">
+							<a href="">
+								<span class="yan">延</span>
+								<span class="yanshi">延保半年￥59</span>
+							</a>
+							<a href="">
+								<span class="yan">延</span>
+								<span class="yanshi">延保一年￥99</span>
+							</a>
+							<a href="">
+								<span class="yan">碎</span>
+								<span class="yanshi">屏碎保一年￥99</span>
+							</a>
+							<a class="liaojie" href="">了解详情>></a><br />
+							<div class="baoxian">
+								<span>购买保险服务表示您已同意</span>
+								<a href="">《OPPO保障服务条款》</a>
+							</div>
+						</div>	
+					</div>-->
+					<form action="{|U:'Products/shop'}" method="post">
+						<div class="fenlei6">
+							<div class="fenlei6_left">
+								<a class="jian" href="javascript:;">-</a>
+								<input class="shuliang" type="text" name="num" id="" value="1" />
+								<a class="jia" href="javascript:;">+</a>
+								<!--<span>库存件</span>-->
+							</div>
+							<div class="fenlei6_right">
+								<i id="aja"></i>
+								<input type="hidden" name="img" id="" value="{$good.lest_img}" />
+								<input type="hidden" name="gid" id="" value="{$good.gid}" />
+								<input type="hidden" name="price" id="" value="{$good.price}" />
+								<input type="hidden" name="name" id="" value="{$good.gname}" />
+								<input type="submit" value="加入购物车"/>
+							</div>
+						</div>
+						
+					</form>
+					<div class="fenlei7">
+						<img src="__PUBLIC__/images/111.png" alt="" />
+						<span>79元起包邮</span>
+						<img src="__PUBLIC__/images/222.png" alt="" />
+						<span>7天包推30天包换</span>
+						<img src="__PUBLIC__/images/333.png" alt="" />
+						<span>分期付款</span>
+						<img src="__PUBLIC__/images/444.png" alt="" />
+						<span>购物返积分</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="shangpin_cont">
+			<p></p>
+			<div class="shangpin_cont_top">
+				<a style="background: #409F73; color: #fff;" href="">商品详情</a>
+				<a href="">规格参数</a>
+				<a href="">用户评价</a>
+			</div>
+			<div class="shangp_cont_con">
+				<img src="__PUBLIC__/images/spcont1.jpg"/>
+				<img src="__PUBLIC__/images/spcont2.jpg"/>
+				<img src="__PUBLIC__/images/spcont3.jpg"/>
+				<img src="__PUBLIC__/images/spcont4.jpg"/>
+				<img src="__PUBLIC__/images/spcont5.jpg"/>
+				<img src="__PUBLIC__/images/spcont6.jpg"/>
+				<img src="__PUBLIC__/images/spcont7.jpg"/>
+				<img src="__PUBLIC__/images/spcont8.jpg"/>
+				<img src="__PUBLIC__/images/spcont9.jpg"/>
+				<img src="__PUBLIC__/images/spcont10.jpg"/>
+				<img src="__PUBLIC__/images/spcont11.jpg"/>
+				<img src="__PUBLIC__/images/spcont12.jpg"/>
+				<img src="__PUBLIC__/images/spcont13.jpg"/>
+				<img src="__PUBLIC__/images/spcont14.jpg"/>
+				<img src="__PUBLIC__/images/spcont15.jpg" style="padding-bottom: 60px;"/>
+			</div>
+		</div>
+		<include file="__VIEW__/Common/footer"/>
+	</body>
+</html>

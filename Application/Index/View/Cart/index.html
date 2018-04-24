@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>购物车</title>
+		<include file="__VIEW__/Common/header.html"/>
+		<!--cart中间部份开始-->
+		<div class="cart_box">
+			<div class="cart1">
+				<a href="{|U:'Index/index'}">首页</a>&nbsp<i>/</i>&nbsp
+				<span>我的OPPO</span>
+			</div>
+			<ul class="cart1_ul">
+				<li style="background: #fff; border-bottom: 4px solid #F5A146;">购物车</li>
+				<li>填写订单</li>
+				<li>支付</li>
+			</ul>
+			<div class="cart3_box">
+				<div class="cart3">
+					<ul class="cart3_ul">
+						<li class="chanp">产品</li>
+						<li class="shul">数量</li>
+						<li class="jiag">价格</li>
+						<li class="shanc">删除</li>
+					</ul>
+					<!--购物车为空-->
+					<?php if(!$catedata['goods']){ ?>
+					<div class="cart_con">
+						<h2>购物车空空的，去<a href="{|U:'List/index',array('sid'=>19)}">逛逛</a>吧</h2>
+					</div>
+					<?php }else{ ?>
+					<!--购物车不为空-->
+					<div class="cart_you">
+						<foreach from="$catedata['goods']" key="$k" value="$v">
+						<div class="cart_you_con">
+							<img src="__ROOT__/{$v.img}"/>
+							<div class="cart_cont">
+								<h4>{$v.name}</h4>
+								<span>{$v.options}</span>
+								<div class="cart_shu">
+									<a href="{|U:'Cart/num_jian',array('sid'=>$k,'num'=>$v['num'])}">-</a>
+									<input type="text" name="" id="" value="{$v.num}" />
+									<a href="{|U:'Cart/num_jia',array('sid'=>$k,'num'=>$v['num'])}">+</a>
+								</div>
+								<span class="jiajia">￥{$v.price}.00</span>
+								<a class="cart_del" href="{|U:'Cart/del',array('sid'=>$k)}">×</a>
+							</div>
+						</div>
+						</foreach>
+					</div>
+					<?php } ?>
+					<div class="jixugou">
+						<a href="{|U:'Index/index'}">继续选购</a>
+					</div>
+					<div class="cart_right">
+						<ul>
+							<li>商品数量:<span>{$catedata.total_rows}</span></li>
+							<li>总价:<span>￥{$catedata.total}.00</span></li>
+						</ul>
+						<div class="xiaoji">
+							<h4 class="xiaojil">小计：</h4>
+							<h4 class="xiaojir"> ￥{$catedata.total}.00</h4>
+							<a href="{|U:'Trade/index'}">确认</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--cart中间部份结束-->
+		<include file="__VIEW__/Common/footer.html"/>
+	</body>
+</html>
